@@ -1,0 +1,25 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+
+
+.text-field, .text-area, .date-picker{
+	 -fx-min-width: 50;
+	  -fx-max-width: 300;
+	  -fx-font-family:"Times New Roman", Times, serif;
+	  -fx-font-size:20px;
+}
+
+.gridPane{
+	-fx-padding: 10;
+	-fx-border-style: solid inside;
+	-fx-border-width: 2;
+	-fx-border-insets: 5;
+	-fx-border-radius: 5;
+	-fx-border-color: blue;
+}
+
+.button{
+	-fx-max-width:100;
+	-fx-padding:10;
+	-fx-alignment: center;
+}

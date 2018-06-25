@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseMoved="#checkIfLatvia" prefHeight="600.0" prefWidth="700" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PersonasDatiController">
+   <children>
+      <TextField fx:id="name" layoutX="76.0" layoutY="92.0" onDragDetected="#initializeCountries" prefHeight="34.0" prefWidth="548.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="136.0" layoutY="14.0" prefHeight="35.0" prefWidth="58.0" text="Personas dati" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="121.0">
+         <font>
+            <Font name="Agency FB Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="70.0" text="Vārds" AnchorPane.leftAnchor="70.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="138.0" text="Uzvārds" AnchorPane.leftAnchor="70.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="surname" layoutX="76.0" layoutY="160.0" prefHeight="34.0" prefWidth="148.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <Label layoutX="74.0" layoutY="207.0" text="Iela un mājas, dzīvokļa numurs" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="207.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="address" layoutX="76.0" layoutY="229.0" prefHeight="34.0" prefWidth="548.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <Label layoutX="74.0" layoutY="278.0" text="Pasta indekss" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="278.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="post_index" layoutX="74.0" layoutY="300.0" prefHeight="34.0" prefWidth="122.0" AnchorPane.leftAnchor="70.0" />
+      <Label layoutX="214.0" layoutY="278.0" text="Valsts" AnchorPane.topAnchor="278.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="387.0" layoutY="278.0" text="Pilsēta" AnchorPane.topAnchor="278.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="74.0" layoutY="366.0" text="Tālrunis" AnchorPane.leftAnchor="70.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="country" layoutX="214.0" layoutY="300.0" onMouseReleased="#checkIfLatvia" prefHeight="34.0" prefWidth="158.0" snapToPixel="false" AnchorPane.leftAnchor="214.0" />
+      <TextField fx:id="number" layoutX="250.0" layoutY="388.0" prefHeight="34.0" prefWidth="378.0" AnchorPane.leftAnchor="245.60000000000002" AnchorPane.rightAnchor="70.0" />
+      <Label layoutX="74.0" layoutY="447.0" text="E-pasts" AnchorPane.leftAnchor="70.0">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="mail" layoutX="81.0" layoutY="469.0" prefHeight="34.0" prefWidth="148.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+      <Button fx:id="nextPage" layoutX="525.0" layoutY="522.0" mnemonicParsing="false" onAction="#getPersonasDati" prefHeight="26.0" prefWidth="105.0" text="Nākošā lapa" AnchorPane.leftAnchor="525.0" AnchorPane.rightAnchor="70.0" />
+      <ChoiceBox fx:id="phoneType" layoutX="76.0" layoutY="388.0" prefHeight="34.0" prefWidth="158.0" snapToPixel="false" AnchorPane.leftAnchor="70.0" />
+      <Label fx:id="PersonasDatiWarningText" layoutX="68.0" layoutY="522.0" prefHeight="26.0" prefWidth="384.0" textFill="#ea0000" AnchorPane.leftAnchor="70.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cityChoice" layoutX="384.0" layoutY="300.0" prefHeight="34.0" prefWidth="243.0" />
+      <TextField fx:id="city" layoutX="384.0" layoutY="300.0" prefHeight="34.0" prefWidth="234.0" AnchorPane.leftAnchor="384.0" AnchorPane.rightAnchor="73.0" />
+   </children>
+</AnchorPane>

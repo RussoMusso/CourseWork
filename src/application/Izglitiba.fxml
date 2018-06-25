@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AddNewIzglitiba" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IzglitibaController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="24.0" prefHeight="35.0" prefWidth="336.0" text="Izglītība" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="76.0">
+         <font>
+            <Font name="Agency FB Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteIzglitiba" layoutX="370.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteIzglitibaRow" prefHeight="26.0" text="Izdzēst" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="409.0" />
+      <Button layoutX="533.0" layoutY="490.0" mnemonicParsing="false" onAction="#goToDarbaPieredze" prefHeight="26.0" text="Nākošā lapa" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="76.0" />
+      <Button fx:id="addNewIzglitiba" layoutX="253.0" layoutY="409.0" mnemonicParsing="false" onAction="#goToAizpildi" prefHeight="26.0" text="Pievienot " AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="409.0" />
+      <TableView fx:id="IzglitibaTable" layoutX="87.0" layoutY="114.0" prefHeight="287.0" prefWidth="548.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0">
+        <columns>
+          <TableColumn fx:id="IzglitibaDateFromCol" prefWidth="100.0" text="No:" />
+          <TableColumn fx:id="IzglitibaDateToCol" prefWidth="100.0" text="Līdz:" />
+            <TableColumn fx:id="IzglitibaQualificationCol" prefWidth="155.199951171875" text="Piešķirtā kvalifikācija" />
+            <TableColumn fx:id="IzglitibaStudyPlaceNameCol" prefWidth="224.00003051757812" text="Izglītības iestāde" />
+        </columns>
+      </TableView>
+      <Button fx:id="addNewIzglitiba1" layoutX="76.0" layoutY="490.0" mnemonicParsing="false" onAction="#goToPersonasDati" prefHeight="26.0" prefWidth="124.0" text="Iepreikšējā lapa" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="506.0" />
+   </children>
+</AnchorPane>

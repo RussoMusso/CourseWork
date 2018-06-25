@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="600.0" minWidth="700.0" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CitasPrasmes1Controller">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="269.0" layoutY="38.0" text="Citas Prasmes" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="38.0">
+         <font>
+            <Font name="Agency FB Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="105.0" text="Komunikācijas prasmes:" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="105.0">
+         <font>
+            <Font name="Bernard MT Condensed" size="27.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="komPrasmes" layoutX="72.0" layoutY="139.0" prefHeight="150.0" prefWidth="533.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="139.0" />
+      <Button fx:id="PreviousPage" layoutX="70.0" layoutY="531.0" mnemonicParsing="false" onAction="#goToValodasPrasmes" prefHeight="26.0" prefWidth="161.0" text="Iepriekšējā lapa" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="468.4" AnchorPane.topAnchor="531.0" />
+      <Button fx:id="NextPage" layoutX="467.0" layoutY="531.0" mnemonicParsing="false" onAction="#getCitasPrasmes1" prefHeight="26.0" prefWidth="162.0" text="Nākošā lapa" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="70.60000000000002" AnchorPane.topAnchor="531.0" />
+      <Label layoutX="70.0" layoutY="300.0" text="Organozatoriskās vadības prasmes:" AnchorPane.leftAnchor="70.0">
+         <font>
+            <Font name="Bernard MT Condensed" size="27.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="orgPrasmes" layoutX="70.0" layoutY="334.0" prefHeight="150.0" prefWidth="533.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="334.0" />
+      <Label fx:id="CitasPrasmes1WarningText" layoutX="70.0" layoutY="492.0" prefHeight="26.0" prefWidth="396.0" textFill="#ff0202">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
