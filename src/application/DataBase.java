@@ -20,11 +20,12 @@ public class DataBase implements Serializable{
 	static Connection con = null;
 	static Statement stmt = null;
 
-
+	
 	public  DataBase() throws ClassNotFoundException, SQLException {
-		//createConnection();
-		//stmt = con.createStatement();		   
+		createConnection();
+		stmt = con.createStatement();		   
 	}
+	
 	public  static void createConnection() throws ClassNotFoundException, SQLException {
 		//Ielade SQL un izveido connection
 		Class.forName("org.sqlite.JDBC");
@@ -32,12 +33,8 @@ public class DataBase implements Serializable{
 		//createAndInsertDB();
 		//con.close();
 	}
-	public  void createDatabase() throws SQLException {
-		String sql = "CREATE DATABASE IF NOT EXISTS database";
-		stmt.executeUpdate(sql);
-	}
-
-	//get data 
+	
+	//set Personal Data from database to system
 	public static void getPersonalData(String username) throws SQLException, ClassNotFoundException {
 		
 		createConnection();
@@ -78,29 +75,9 @@ public class DataBase implements Serializable{
 		}
 	}
 	
+	//set personal data from system into database
 public static void setPersonalData(String user) throws SQLException, ClassNotFoundException {
-	/*
-	createConnection();
-	stmt = con.createStatement();
-	String query="";
-	 String sql = "SELECT * FROM CitasPrasmes1 where userID="+user_ID+";";
-	 
-      ResultSet rs = stmt.executeQuery(sql);
-      if(!rs.next()) {
-    	  query=" INSERT INTO CitasPrasmes1(komunikacija,organizacija,userID) VALUES(?,?,?);";
-      }
-      else {
-    	  query = "UPDATE CitasPrasmes1 SET komunikacija=?, organizacija=? WHERE userID=?;";
-  		
-      }
-      PreparedStatement pstmt = con.prepareStatement(query);
-		
-		pstmt.setString(1,CitasPrasmes1Controller.prasmes1.getKomunikacijasPrasmes());
-        pstmt.setString(2,CitasPrasmes1Controller.prasmes1.getOrganizatoriskasPrasmes());
-        pstmt.setInt(3,user_ID);
-        pstmt.executeUpdate();
-        con.close();
-        */
+	
 		createConnection();
 		stmt = con.createStatement();
 		
@@ -137,6 +114,7 @@ public static void setPersonalData(String user) throws SQLException, ClassNotFou
             con.close();
 			
 }	
+//get citasPrasmes1 from database into system
 public static void getCitasPrasmes1Data(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -162,6 +140,7 @@ public static void getCitasPrasmes1Data(int user_ID) throws SQLException, ClassN
 	
 	con.close();
 }
+//set citasPrasmes1 from system into database
 public static void setCitasPrasmes1(int user_ID) throws SQLException, ClassNotFoundException {
 		
 	createConnection();
@@ -186,6 +165,7 @@ public static void setCitasPrasmes1(int user_ID) throws SQLException, ClassNotFo
         con.close();
 			
 }	
+//set citasPrasmes2 from database into system
 public static void getCitasPrasmes2Data(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -210,6 +190,7 @@ public static void getCitasPrasmes2Data(int user_ID) throws SQLException, ClassN
 	
 	con.close();
 }
+//set citasPrasmes2 from system into database
 public static void setCitasPrasmes2(int user_ID) throws SQLException, ClassNotFoundException {
 		
 		createConnection();
@@ -233,6 +214,7 @@ public static void setCitasPrasmes2(int user_ID) throws SQLException, ClassNotFo
 	        pstmt.executeUpdate();
 	        con.close();
 }	
+//set Izglitiba from database into system
 public static void getIzglitiba(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -254,7 +236,7 @@ public static void getIzglitiba(int user_ID) throws SQLException, ClassNotFoundE
 	con.close();
 }
 
-
+//set Izglitiba from system into database
 public static void setIzglitiba(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -274,6 +256,7 @@ public static void setIzglitiba(int user_ID) throws SQLException, ClassNotFoundE
     con.close();
 	
 }
+//set Pieredze from database into system
 public static void getPieredze(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -295,7 +278,7 @@ public static void getPieredze(int user_ID) throws SQLException, ClassNotFoundEx
 	}
 	con.close();
 }
-
+//set Pieredze from system into database
 public static void setPieredze(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -339,7 +322,7 @@ public static void getValodas(int user_ID) throws SQLException, ClassNotFoundExc
 	}
 	con.close();
 }
-
+//set Valodas from system into database
 public static void setValodas(int user_ID) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -360,6 +343,8 @@ public static void setValodas(int user_ID) throws SQLException, ClassNotFoundExc
     con.close();
 	
 }
+
+///Delete objects from database
 public static void deleteIzglitiba(int id) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -388,7 +373,7 @@ public static void deleteValodas(int id) throws SQLException, ClassNotFoundExcep
     con.close();
 }
 	
-	public static void insertLoginData(String name, String pass) throws SQLException, ClassNotFoundException {
+public static void insertLoginData(String name, String pass) throws SQLException, ClassNotFoundException {
 		createConnection();
 		stmt = con.createStatement();
 		stmt.executeUpdate("INSERT INTO PersonalData (username , password)" + 
@@ -396,7 +381,7 @@ public static void deleteValodas(int id) throws SQLException, ClassNotFoundExcep
 	}
 
 	
-
+//checks if database have given username and password at same row 
 public static boolean verifyUser(String username, String pass) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();
@@ -409,6 +394,7 @@ public static boolean verifyUser(String username, String pass) throws SQLExcepti
 		}
 	
 	}
+//check if given username is in database
 public static boolean checkUsername(String username) throws SQLException, ClassNotFoundException {
 	createConnection();
 	stmt = con.createStatement();

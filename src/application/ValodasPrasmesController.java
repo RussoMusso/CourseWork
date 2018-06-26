@@ -49,6 +49,7 @@ public class ValodasPrasmesController implements Initializable{
 		ValodasTable.setItems(ValodasPrasmesAizpildiController.valodas);
 	
 	}
+	//go to aizpildi page
 	public void goToAizpildi(ActionEvent event) throws IOException {
 		MainController.counter++;
 		Parent _page= FXMLLoader.load(getClass().getResource(Main.pages.get(MainController.counter)));
@@ -65,6 +66,7 @@ public class ValodasPrasmesController implements Initializable{
 		
 		
 	}
+	//go to next page
 	public void goToCitasPrasmes1(ActionEvent event) throws IOException{
 		MainController.counter++;
 		MainController.counter++;
@@ -74,6 +76,7 @@ public class ValodasPrasmesController implements Initializable{
 		app_stage.setScene(_scene);
 		app_stage.show();
 	}
+	//go to previous page
 	public void goToDarbaPieredze(ActionEvent event) throws IOException {
 		MainController.counter--;
 		MainController.counter--;
