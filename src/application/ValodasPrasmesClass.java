@@ -5,8 +5,8 @@ public class ValodasPrasmesClass {
 	public enum Marks {
 	    A1,A2,B1,B2,C1,C2;
 	}
-	String valoda,veids,klausisanas,lasisana,dialogs,monologs,rakstisana,diplomi;
-	
+	private String valoda,veids,klausisanas,lasisana,dialogs,monologs,rakstisana,diplomi;
+	private int id;
 	public ValodasPrasmesClass() {
 		
 	}
@@ -26,6 +26,18 @@ public class ValodasPrasmesClass {
 		
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
 	public String getDiplomi() {
 		return diplomi;
 	}

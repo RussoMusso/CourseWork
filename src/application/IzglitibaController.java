@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -63,10 +64,14 @@ public class IzglitibaController implements Initializable {
 		app_stage.show();
 	}
 	
-	public void deleteIzglitibaRow() {
-		IzglitibaAizpildiController.study.remove(IzglitibaTable.getSelectionModel().getSelectedItems());
+	public void deleteIzglitibaRow() throws ClassNotFoundException, SQLException {
+		//IzglitibaAizpildiController.study.remove(IzglitibaTable.getSelectionModel().getSelectedItems());
+		//IzglitibaTable.getItems().removeAll(IzglitibaTable.getSelectionModel().getSelectedItems());
+		int index= IzglitibaTable.getSelectionModel().getSelectedIndex();
+		DataBase.deleteIzglitiba(IzglitibaAizpildiController.study.get(index).getID());
+		
+		//IzglitibaAizpildiController.study.remove(IzglitibaTable.getSelectionModel().getSelectedItems());
 		IzglitibaTable.getItems().removeAll(IzglitibaTable.getSelectionModel().getSelectedItems());
-		System.out.println(IzglitibaAizpildiController.study);
 	}
 	public void goToDarbaPieredze(ActionEvent event) throws IOException{
 		MainController.counter++;

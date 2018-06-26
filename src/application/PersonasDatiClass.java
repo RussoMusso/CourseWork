@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 
 public  class PersonasDatiClass {
 	
+	int ID;
 	String username;
 	String password;
 	String name;
@@ -17,7 +18,7 @@ public  class PersonasDatiClass {
 	String mail;
 	String country;
 	String phoneType;
-	int ID;
+	
 	
 	
 	

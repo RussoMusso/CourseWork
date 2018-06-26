@@ -19,6 +19,8 @@ import java.util.jar.Attributes.Name;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,8 +39,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class PersonasDatiController implements Initializable{
-	
-	
+	//VARIABLE for table initialization
+	public static int countTimes=0;
 	public static PersonasDatiClass persona = new PersonasDatiClass();
 	public static PersonasDatiClass retrievePersona() {
 		return persona;
@@ -72,6 +74,12 @@ public class PersonasDatiController implements Initializable{
 		
 		@FXML
 		private  TextField number;
+		
+		
+		
+		
+		
+		
 		@FXML
 		private  TextField mail;
 		@FXML
@@ -94,9 +102,6 @@ public class PersonasDatiController implements Initializable{
 			System.out.println(name.getText());
 			return name.getText();
 		}
-		
-		
-		
 		
 	
 	public void initialize(URL url, ResourceBundle rb) {
@@ -132,17 +137,16 @@ public class PersonasDatiController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		} 
-	public void use() throws ClassNotFoundException, SQLException {
-		
+		number.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		        String newValue) {
+		        if (!newValue.matches("\\d*")) {
+		            number.setText(newValue.replaceAll("[^\\d]", ""));
+		        }
+		    }
+		});	
 	}
-
-	
-	
-	
-	
 	@FXML
 	private void readIntoList() throws IOException {
 		
@@ -165,13 +169,14 @@ public class PersonasDatiController implements Initializable{
 	@FXML
 	private boolean checkIfLatvia() throws IOException {
 	
-		if(country.getValue().contains("Austria")) {
+		if(country.getValue().contains("Latvia")) {
 			city.setText("");
 			city.setVisible(false);
 			cityChoice.setVisible(true);
 			return true;
 			
 		}else {
+			cityChoice.setValue("");
 			city.setVisible(true);
 			cityChoice.setVisible(false);
 			return false;
@@ -200,11 +205,11 @@ public class PersonasDatiController implements Initializable{
 		}
 		
 		PersonasDatiWarningText.setText("");
-		if(name.getText().equals("") || surname.getText().equals("")  || (city.getText().equals("")&& cityChoice.getValue()==null) || address.getText().equals("") || post_index.getText().equals("") || mail.getText().equals("")|| number.getText().equals("") || country.getValue()==null|| phoneType.getValue()==null )
+		if(name.getText().equals("") || surname.getText().equals("")  || (city.getText().equals("")&& cityChoice.getValue()=="") || address.getText().equals("") || post_index.getText().equals("") || mail.getText().equals("")|| number.getText().equals("") || country.getValue()==null|| phoneType.getValue()==null )
 		{
 			PersonasDatiWarningText.setText("*Lūdzu aizpildiet visus laukus");
 		}
-		else if(!mail.getText().contains("@")) {
+		else if(!mail.getText().contains("@") || !mail.getText().contains(".")) {
 			PersonasDatiWarningText.setText("*Lūdzu ievadiet korektu e-mailu");
 		}
 		else if(number.getText().length()!=8 || count>0) {
@@ -226,12 +231,15 @@ public class PersonasDatiController implements Initializable{
 			persona.setAddress(address.getText());
 			MainController.user1.setPersonasDatiClass(persona);
 			System.out.println(persona.getUsername());
-			DataBase.setPersonalData(persona.getUsername());
-			DataBase.getCitasPrasmes1Data(persona.getID());
-			DataBase.getCitasPrasmes2Data(persona.getID());
-			DataBase.getIzglitiba(persona.getID());
-			DataBase.getPieredze(persona.getID());
-			DataBase.getValodas(persona.getID());
+			if(countTimes==0) {
+				DataBase.setPersonalData(persona.getUsername());
+				DataBase.getCitasPrasmes1Data(persona.getID());
+				DataBase.getCitasPrasmes2Data(persona.getID());
+				DataBase.getIzglitiba(persona.getID());
+				DataBase.getPieredze(persona.getID());
+				DataBase.getValodas(persona.getID());
+			}
+			countTimes++;
 			System.out.println(IzglitibaAizpildiController.study);
 			MainController.counter++;
 			Parent _page= FXMLLoader.load(getClass().getResource(Main.pages.get(MainController.counter)));
@@ -239,39 +247,7 @@ public class PersonasDatiController implements Initializable{
 			Stage app_stage=(Stage)((Node) event.getSource()).getScene().getWindow();
 			app_stage.setScene(_scene);
 			app_stage.show();
-			
-			
-			//PersonasDatiClass persona = new PersonasDatiClass(name.getText(), surname.getText(), address.getText(), post_index.getText(), city.getText(), Integer.parseInt(number.getText()), mail.getText(), country.getValue().toString(), phoneType.getValue().toString());
-		}
-
-		/*
-		writtenAddress+=address.getText();
-		writtenCity=city.getText();
-		writtenCountry= country.getValue().toString();
-		writtenMail=mail.getText();
-		writtenNumber=number.getText();
-		writtenPhoneType=phoneType.getValue().toString();
-		writtenPostIndex=post_index.getText();
-		writtenSurname=surname.getText();
-		System.out.println(writtenAddress+writtenCity+writtenCountry+writtenMail+writtenName+writtenNumber+writtenPhoneType+writtenPostIndex+writtenSurname);
-		*/
+			}
 	}
-	
-	/*
-	public static void setValues() {
-		name.setText(persona.getName());
-		surname.setText(persona.getSurname());
-		address.setText(persona.getAddress());
-		mail.setText(persona.getMail());
-		city.setText(persona.getCity());
-		String num=""+persona.getNumber();
-		number.setText(num);
-		//phoneType.setValue(persona.getPhoneType());
-		//country.setValue(persona.getCountry());
-		post_index.setText(persona.getPost_index());
-		
-	}
-	*/
-
 	
 }

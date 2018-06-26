@@ -54,7 +54,7 @@ public class MainController /*implements Initializable*/ {
 	 public XWPFDocument getResultDocument() {
 	        return resultDocument;
 	    }
-	 
+	 	 
 	
 	 public void createHeaddingParagraph() {
 	        XWPFParagraph headding = resultDocument.createParagraph();
@@ -110,9 +110,6 @@ public class MainController /*implements Initializable*/ {
 	        run.setText("Telefons: \n" + p.getPhoneType()+" : "+p.getNumber());
 	        run.addBreak();
 	        
-	        
-	        
-
 	    }
 	
 	 
@@ -237,210 +234,9 @@ public class MainController /*implements Initializable*/ {
 	        run.addBreak();
 	        run.setText("Ar profesiju saistītās prasmes:"+c2.getSaistitasPrasmes());
 	        run.addBreak();
-	        /*
-	        			+"\nOrganizātoriskās prasmes: "+c1.getOrganizatoriskasPrasmes()
-	        			+"\nDatorprasmes: "+c2.getDatorprasmes()
-	        			+"\nAr profesiju saistītās prasmes:"+c2.getSaistitasPrasmes());*/
-	        			
 	       
 	    }
-	 
-	
 
-	
-	/*ObservableList<IzglitibaClass> study = FXCollections.observableArrayList();*/
-	
-	//Variables for DarbaPieredze Table
-	/*
-	@FXML
-	protected TableView<DarbaPieredzeClass> tableView;
-	@FXML
-	protected TableColumn<DarbaPieredzeClass, LocalDate>dateFrom;
-	@FXML
-	protected TableColumn<DarbaPieredzeClass, LocalDate>dateTo;
-	@FXML
-	protected  TableColumn<DarbaPieredzeClass, String>proffession;
-	@FXML
-	protected TableColumn<DarbaPieredzeClass, String>workPlaceName;
-	*/
-	
-	
-	/*
-	public void initialize(URL url, ResourceBundle rb) {
-		
-		dateFrom.setCellValueFactory(new PropertyValueFactory<DarbaPieredzeClass, LocalDate>("dateFrom"));
-		dateTo.setCellValueFactory(new PropertyValueFactory<DarbaPieredzeClass, LocalDate>("dateTo"));
-		proffession.setCellValueFactory(new PropertyValueFactory<DarbaPieredzeClass, String>("profession"));
-		workPlaceName.setCellValueFactory(new PropertyValueFactory<DarbaPieredzeClass, String>("workPlaceName"));
-		//load data
-		tableView.setItems(getEverything());
-	}
-	*/
-	
-	public ObservableList<DarbaPieredzeClass> getEverything(){
-		ObservableList<DarbaPieredzeClass> p = FXCollections.observableArrayList();
-		p.add(new DarbaPieredzeClass("Klauns", "Cirks", "Riga", "Klaunoties", LocalDate.of(1999, Month.APRIL, 12),LocalDate.of(1999, Month.APRIL, 12)));
-		p.add(new DarbaPieredzeClass("Klauns", "Cirks", "Riga", "Klaunoties", LocalDate.of(1999, Month.APRIL, 12),LocalDate.of(1999, Month.APRIL, 12)));
-		return p;
-	}
-	
-	
-	
-	
-	
-	/*
-	String writtenName="";
-	String writtenSurname="";
-	String writtenAddress="";
-	String writtenPostIndex="";
-	String writtenCity="";
-	String writtenNumber="";
-	String writtenMail="";
-	String writtenCountry="";
-	String writtenPhoneType="";
-	/*
-	String writtenIzglitibaFrom="";
-	String writtenIzglitibaTo="";
-	String writtenIzglitibaQualification="";
-	String writtenIzglitibastudyPlaceName="";
-	String writtenIzglitibaKnowladge="";
-	*/
-	/*
-	@FXML
-	private TextField IzglitibaStudyPlaceName;
-	@FXML
-	private TextField IzglitibaQualification;
-	@FXML
-	private TextArea IzglitibaKnowladge;
-	@FXML
-	private DatePicker IzglitibaDateFrom;
-	@FXML
-	private DatePicker IzglitibaDateTo;
-	@FXML
-	private Label IzglitibaWarningText;
-	
-	@FXML
-	private TableView<IzglitibaClass> IzglitibaTable;
-	@FXML
-	private TableColumn<IzglitibaClass, LocalDate>IzglitibaDateFromCol;
-	@FXML
-	private TableColumn<IzglitibaClass, LocalDate>IzglitibaDateToCol;
-	@FXML
-	private TableColumn<IzglitibaClass, String>IzglitibaQualificationCol;
-	@FXML
-	private TableColumn<IzglitibaClass, String>IzglitibaStudyPlaceNameCol;
-	
-
-	*/
-/*
-public void initialize(URL url, ResourceBundle rb) {
-		
-	
-		IzglitibaDateFromCol.setCellValueFactory(new PropertyValueFactory<IzglitibaClass, LocalDate>("IzglitibaDateFrom"));
-		IzglitibaDateToCol.setCellValueFactory(new PropertyValueFactory<IzglitibaClass, LocalDate>("dateTo"));
-		IzglitibaQualificationCol.setCellValueFactory(new PropertyValueFactory<IzglitibaClass, String>("1"));
-		IzglitibaStudyPlaceNameCol.setCellValueFactory(new PropertyValueFactory<IzglitibaClass, String>("w1"));
-		//load data
-		IzglitibaTable.setItems(study);
-	
-	}
-*/
-	/*
-	ObservableList<String> phoneTypes = FXCollections.observableArrayList(
-			"Mobilais",
-			"Darba",
-			"Mājas"
-			);
-	ObservableList<String> countries = Stream.of(Locale.getISOCountries())
-	        .map(locales -> new Locale("", locales))
-	        .map(Locale::getDisplayCountry)
-	        .collect(Collectors.toCollection(FXCollections::observableArrayList));
-	
-	@FXML
-	private TextField name;
-	@FXML
-	private TextField surname;
-	@FXML
-	private TextField address;
-	@FXML
-	private TextField post_index;
-	@FXML
-	private TextField city;
-	@FXML
-	private TextField number;
-	@FXML
-	private TextField mail;
-	@FXML
-	private ChoiceBox<String> country = new ChoiceBox<>() ;
-	@FXML
-	private ChoiceBox<String>phoneType = new ChoiceBox<>();
-	@FXML
-	private Button nextPage = new Button();
-	@FXML
-	private Button but = new Button();
-	
-	@FXML
-	private void initializeCountries() {
-		
-		
-		phoneType.setItems(phoneTypes);
-		country.setItems(countries);
-		//country.setValue("Latvia");
-		
-	
-	}
-
-	@FXML
-	private void getPersonasDati() {
-		writtenAddress+=address.getText();
-		writtenCity=city.getText();
-		writtenCountry= country.getValue().toString();
-		writtenMail=mail.getText();
-		writtenNumber=number.getText();
-		writtenPhoneType=phoneType.getValue().toString();
-		writtenPostIndex=post_index.getText();
-		writtenSurname=surname.getText();
-		System.out.println(writtenAddress+writtenCity+writtenCountry+writtenMail+writtenName+writtenNumber+writtenPhoneType+writtenPostIndex+writtenSurname);
-	}
-	/*
-	@FXML
-	private void makeIzglitibaDatiObject(ActionEvent event) throws IOException {
-		IzglitibaWarningText.setText("");
-		if(IzglitibaQualification.getText().equals("") || IzglitibaStudyPlaceName.getText().equals("") || IzglitibaKnowladge.getText().equals("") || IzglitibaDateTo.getValue()==null|| IzglitibaDateFrom.getValue()==null )
-		{
-			IzglitibaWarningText.setText("*Lūdzu aizpildiet visus laukus");
-		}
-		else {
-			IzglitibaClass obj = new IzglitibaClass(IzglitibaQualification.getText(), IzglitibaStudyPlaceName.getText(), IzglitibaKnowladge.getText(), IzglitibaDateFrom.getValue(), IzglitibaDateTo.getValue());
-			study.add(obj);
-			
-			System.out.println(study);
-			Parent Izglitiba_page= FXMLLoader.load(getClass().getResource("/application/Izglitiba.fxml"));
-			Scene Izglitiba_scene = new Scene(Izglitiba_page);
-			Stage app_stage=(Stage)((Node) event.getSource()).getScene().getWindow();
-			app_stage.setScene(Izglitiba_scene);
-			app_stage.show();
-		}
-	}
-
-	*/
-	
-	
-	/*
-	@FXML
-	private TextField username;
-	@FXML
-	private PasswordField pass;
-	public void signIn(ActionEvent event) {
-		String writtenUsername = username.getText();
-		String writtenPassword = pass.getText();
-		if(writtenPassword.equals("1")&& writtenUsername.equals("1")) {
-			System.out.println("You are in");
-		}
-	
-		
-	}
-*/
 }
 
 

@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -57,11 +58,12 @@ public class ValodasPrasmesController implements Initializable{
 		app_stage.show();
 	}
 	//delete function , deletes object from array
-	public void deleteValodasPrasmesRow() {
-		ValodasPrasmesAizpildiController.valodas.remove(ValodasTable.getSelectionModel().getSelectedItems());
-		System.out.println(ValodasTable.getSelectionModel().getSelectedIndex());
+	public void deleteValodasPrasmesRow() throws ClassNotFoundException, SQLException {
+		int index= ValodasTable.getSelectionModel().getSelectedIndex();
+		DataBase.deleteValodas(ValodasPrasmesAizpildiController.valodas.get(index).getId());
 		ValodasTable.getItems().removeAll(ValodasTable.getSelectionModel().getSelectedItems());
-		System.out.println(ValodasPrasmesAizpildiController.valodas);
+		
+		
 	}
 	public void goToCitasPrasmes1(ActionEvent event) throws IOException{
 		MainController.counter++;

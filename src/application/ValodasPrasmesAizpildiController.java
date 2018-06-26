@@ -69,7 +69,7 @@ public class ValodasPrasmesAizpildiController {
 		
 		else {
 			ValodasPrasmesClass obj = new ValodasPrasmesClass(valoda.getText(),veids.getValue().toString(),klausisanas.getValue().toString(),lasisana.getValue().toString(),dialogs.getValue().toString(),monologs.getValue().toString(),rakstisana.getValue().toString(),diplomi.getText());
-			valodas.add(obj);
+			ValodasPrasmesAizpildiController.valodas.add(obj);
 			DataBase.setValodas(PersonasDatiController.persona.getID());
 			MainController.user1.setValodasList(valodas);
 			System.out.println(valodas);

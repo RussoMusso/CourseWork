@@ -33,27 +33,6 @@ public class RegisterController {
 
 	
 	
-	public void register(String user, String pass) throws SQLException {
-		PreparedStatement preparedStatement=null;
-		ResultSet resultSet=null;
-		String query="INSERT INTO employee (username,password) VALUES(?,?)";
-		try {
-			preparedStatement = LoginModel.connection.prepareStatement(query);
-			preparedStatement.setString(1, user);
-			preparedStatement.setString(2, pass);
-			
-			resultSet=preparedStatement.executeQuery();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		finally {
-			preparedStatement.close();
-			resultSet.close();
-		}
-	}
-
-
 @FXML
 private void RegisterCheck(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
 	RegisterWarningText.setText("");
@@ -63,8 +42,11 @@ private void RegisterCheck(ActionEvent event) throws IOException, SQLException, 
 	else if(!password.getText().equals(passwordRepeat.getText())) {
 		RegisterWarningText.setText("*Jūsu paroles nesakrīt!!");
 	}
+	else if(DataBase.checkUsername(username.getText())) {
+		RegisterWarningText.setText("*Lietotājvārds ir jau aizņemts!!");
+	}
 		
-		else {
+	else {
 			//DataBase db= new DataBase();
 			//DataBase.createAndInsertDB();
 			DataBase.insertLoginData(username.getText(),password.getText());

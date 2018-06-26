@@ -16,21 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DataBase implements Serializable{
-	/*
-	public static Connection Connector() {
-		try {
-			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:mydatabase.sqlite");
-			return conn;
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-			return null;
-		}
-	}
-	
-}
-	*/
 	
 	static Connection con = null;
 	static Statement stmt = null;
@@ -52,75 +37,6 @@ public class DataBase implements Serializable{
 		stmt.executeUpdate(sql);
 	}
 
-	/*
-	public static void createAndInsertDB() throws SQLException, ClassNotFoundException {
-		createConnection();
-		stmt = con.createStatement();
-		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS PersonalData (" +
-				"    ID INTEGER PRIMARY KEY AUTOINCREMENT" + 
-				"    username TEXT," + 
-				"    password text," + 
-				"    name text," + 
-				"    surname text," + 
-				"    address text," +
-				"    mail text," +
-				"    city text," +
-				"    number int," +
-				"    phoneType text," +
-				"    country text," +
-				"    post_index text," +
-				
-				");");
-		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS IzglitibaData (" +
-				"    userID int," + 
-				"    qualification String," + 
-				"    studyPlace String," + 
-				"    dateFrom Date," + 
-				"    dateTo Date," +
-				
-				");");
-		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS PieredzeData (" +
-				"    userID int," + 
-				"    city String," + 
-				"    duties String," +
-				"    proffession String," +
-				"    name String," +
-				"    dateFrom Date," + 
-				"    dateTo Date," +
-				"    ID int PRIMARY KEY AUTOINCREMENT" + 
-				");");
-		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ValodasData (" +
-				"    userID int," + 
-				"    valoda String," + 
-				"    veids String," +
-				"    klausisanas String," +
-				"    lasisana String," +
-				"    dialogs String," +
-				"    monologs String," +
-				"    rakstisana String," +
-				"    diplomi String," +
-				
-				");");
-		
-		
-		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS CitasPrasmes1Data (" +
-				"    userID int," + 
-				"    organizacija String," + 
-				"    komunikacija String," +
-				
-				");");
-		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS CitasPrasmes2Data (" +
-				"    userID int," + 
-				"    datorPrasmes String," + 
-				"    saistitasPrasmes String," +
-				
-				");");
-	
-		
-	
-	}
-	*/
-	
 	//get data 
 	public static void getPersonalData(String username) throws SQLException, ClassNotFoundException {
 		
@@ -326,6 +242,7 @@ public static void getIzglitiba(int user_ID) throws SQLException, ClassNotFoundE
 	LocalDate date;
 	while(rs.next()) {
 		IzglitibaClass obj= new IzglitibaClass();
+		obj.setID(rs.getInt(1));
 		obj.setStudyPlaceName(rs.getString(2));
 		obj.setQualification(rs.getString(3));
 		obj.setKnowladge(rs.getString(4));
@@ -366,6 +283,7 @@ public static void getPieredze(int user_ID) throws SQLException, ClassNotFoundEx
 	LocalDate date;
 	while(rs.next()) {
 		DarbaPieredzeClass obj= new DarbaPieredzeClass();
+		obj.setId(rs.getInt(1));
 		obj.setProfession(rs.getString(2));
 		obj.setWorkPlaceName(rs.getString(3));
 		obj.setCity(rs.getString(4));
@@ -408,6 +326,7 @@ public static void getValodas(int user_ID) throws SQLException, ClassNotFoundExc
 	LocalDate date;
 	while(rs.next()) {
 		ValodasPrasmesClass obj= new ValodasPrasmesClass();
+		obj.setId(rs.getInt(1));
 		obj.setValoda(rs.getString(2));
 		obj.setVeids(rs.getString(3));
 		obj.setKlausisanas(rs.getString(4));
@@ -441,15 +360,33 @@ public static void setValodas(int user_ID) throws SQLException, ClassNotFoundExc
     con.close();
 	
 }
-	
-
-
-
-
-
-	
-	
-	
+public static void deleteIzglitiba(int id) throws SQLException, ClassNotFoundException {
+	createConnection();
+	stmt = con.createStatement();
+	String query=" DELETE FROM Izglitiba WHERE ID=?;";
+	PreparedStatement pstmt = con.prepareStatement(query);
+	pstmt.setInt(1,id );
+    pstmt.executeUpdate();
+    con.close();
+}
+public static void deletePieredze(int id) throws SQLException, ClassNotFoundException {
+	createConnection();
+	stmt = con.createStatement();
+	String query=" DELETE FROM Pieredze WHERE ID=?;";
+	PreparedStatement pstmt = con.prepareStatement(query);
+	pstmt.setInt(1,id );
+    pstmt.executeUpdate();
+    con.close();
+}
+public static void deleteValodas(int id) throws SQLException, ClassNotFoundException {
+	createConnection();
+	stmt = con.createStatement();
+	String query=" DELETE FROM Valodas WHERE ID=?;";
+	PreparedStatement pstmt = con.prepareStatement(query);
+	pstmt.setInt(1,id );
+    pstmt.executeUpdate();
+    con.close();
+}
 	
 	public static void insertLoginData(String name, String pass) throws SQLException, ClassNotFoundException {
 		createConnection();
@@ -457,46 +394,7 @@ public static void setValodas(int user_ID) throws SQLException, ClassNotFoundExc
 		stmt.executeUpdate("INSERT INTO PersonalData (username , password)" + 
 				" VALUES ('"+name+"', '"+pass+"');");
 	}
-	/*
-	public static void insertNewRecordIntoPersonalData(User user) throws SQLException, ClassNotFoundException {
-		createConnection();
-		stmt = con.createStatement();
-		stmt.executeUpdate("INSERT INTO PersonalData ( name, surname,address,mail,city,number, phoneType,country, post_index)" + 
-				" VALUES ('"+user.getPersonasDatiClass().getName()+"', "+user.getPersonasDatiClass().getSurname()+"', "+user.getPersonasDatiClass().getAddress()+"', "+user.getPersonasDatiClass().getMail()+"', "+user.getPersonasDatiClass().getCity()+"', "+user.getPersonasDatiClass().getPhoneType()+"', "+user.getPersonasDatiClass().getCountry()+"', "+user.getPersonasDatiClass().getPost_index()+");");
-		
-	}
-	public static void insertNewRecordIntoCitasPrasmes1Data(User user) throws SQLException {
-			
-		stmt.executeUpdate("INSERT INTO CitasPrasmes1Data (organizacija , komunikacija)" + 
-				" VALUES ('"+user.getCitasPrasmes1Class().getOrganizatoriskasPrasmes()+"', '"+user.getCitasPrasmes1Class().getKomunikacijasPrasmes()+");");
-		}
-	public static void insertNewRecordIntoCitasPrasmes2Data(User user) throws SQLException {
-		
-		stmt.executeUpdate("INSERT INTO CitasPrasmes2Data (datorPrasmes String, saistitasPrasmes String)" + 
-				" VALUES ('"+user.getCitasPrasmes2Class().getDatorprasmes()+"', '"+user.getCitasPrasmes2Class().getSaistitasPrasmes()+");");
-	}
-public static void insertNewRecordIntoIzglitibaData(User user) throws SQLException {
-	for(int i=0; i<user.getIzglitibaList().size();i++) {
-			stmt.executeUpdate("INSERT INTO IzglitibaData (qualification String, studyPlace String,dateFrom Date,dateTo Date)" + 
-					" VALUES ('"+user.getIzglitibaList().get(i).getQualification()+"', '"+user.getIzglitibaList().get(i).getStudyPlaceName()+"', '"+user.getIzglitibaList().get(i).getDateFrom()+
-					"', '"+user.getIzglitibaList().get(i).getDateTo()+");");
-		}
-	}
-public static void insertNewRecordIntoPieredzeData(User user) throws SQLException {
-	for(int i=0; i<user.getPieredzeList().size();i++) {
-		stmt.executeUpdate("INSERT INTO PieredzeData (city String, duties String,proffession String,name String,dateFrom Date,dateTo Date)" + 
-				" VALUES ('"+user.getPieredzeList().get(i).getCity()+"', '"+user.getPieredzeList().get(i).getWorkDuties()+"', '"+user.getPieredzeList().get(i).getProfession()+
-				"', '"+user.getPieredzeList().get(i).getWorkPlaceName()+"', '"+user.getPieredzeList().get(i).getDateFrom()+"', '"+user.getPieredzeList().get(i).getDateTo()+");");
-				}
-	}
-public static void insertNewRecordIntoValodasData(User user) throws SQLException {
-	for(int i=0; i<user.getValodasList().size();i++) {
-		stmt.executeUpdate("INSERT INTO PieredzeData (valoda  String, veids String,klausisanas String,lasisana String,dialogs String,monologs String,rakstisana String,diplomi String,dateFrom Date,dateTo Date)" + 
-				" VALUES ('"+user.getValodasList().get(i).getValoda()+"', '"+user.getValodasList().get(i).getVeids()+"', '"+user.getValodasList().get(i).getKlausisanas()+"', '"+user.getValodasList().get(i).getLasisana()+"', '"+user.getValodasList().get(i).getDialogs()+"', '"+user.getValodasList().get(i).getMonologs()
-				+"', '"+user.getValodasList().get(i).getRakstisana()+"', '"+user.getValodasList().get(i).getDiplomi()+"', '"+");");
-				}
-	}
-	*/
+
 	
 
 public static boolean verifyUser(String username, String pass) throws SQLException, ClassNotFoundException {
@@ -505,7 +403,21 @@ public static boolean verifyUser(String username, String pass) throws SQLExcepti
 		ResultSet rs=stmt.executeQuery("SELECT * FROM PersonalData WHERE username='"+username+"'AND password='"+pass+"'");
 		if(rs.next()) {
 			return true;
+			
 		}else {
+			return false;
+		}
+	
+	}
+public static boolean checkUsername(String username) throws SQLException, ClassNotFoundException {
+	createConnection();
+	stmt = con.createStatement();
+		ResultSet rs=stmt.executeQuery("SELECT * FROM PersonalData WHERE username='"+username+"';");
+		if(rs.next()) {
+			con.close();
+			return true;
+		}else {
+			con.close();
 			return false;
 		}
 	

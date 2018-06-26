@@ -21,11 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class LoginController implements Initializable {
-	
-	public static LoginModel loginModel= new LoginModel();
-	
-	
+public class LoginController {
 	
 	
 	@FXML
@@ -39,17 +35,18 @@ public class LoginController implements Initializable {
 	@FXML
 	private Label LoginWarningText;
 	
+	@FXML
+	private void goToRegister(ActionEvent event) throws IOException, SQLException, ClassNotFoundException  {
+		MainController.counter++;
+		FXMLLoader loader = new FXMLLoader();
+		Pane _page= loader.load(getClass().getResource(Main.pages.get(MainController.counter)));
+		Scene _scene = new Scene(_page);
+		Stage app_stage=(Stage)((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(_scene);
+		app_stage.show();
+	}
 	
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub'
-		/*
-		if(loginModel.isDbConnected()) {
-			System.out.println("Good");
-		
-		}else {
-			System.out.println("Bad");
-		}
-	*/}
+	
 	@FXML
 	private void LoginCheck(ActionEvent event) throws IOException, SQLException, ClassNotFoundException  {
 		LoginWarningText.setText("");
@@ -58,15 +55,11 @@ public class LoginController implements Initializable {
 			if(DataBase.verifyUser(username.getText(), password.getText())) {
 				
 				DataBase.getPersonalData(username.getText());
-				
 				//PersonasDatiController.persona.setUsername(username.getText());
 				MainController.counter++;
 				MainController.counter++;
 				FXMLLoader loader = new FXMLLoader();
 				Pane _page= loader.load(getClass().getResource(Main.pages.get(MainController.counter)));
-				
-				//PersonasDatiController personasDatiController = (PersonasDatiController)loader .getController();
-				//personasDatiController.use(username.getText());
 				Scene _scene = new Scene(_page);
 				Stage app_stage=(Stage)((Node) event.getSource()).getScene().getWindow();
 				app_stage.setScene(_scene);
@@ -81,29 +74,7 @@ public class LoginController implements Initializable {
 			// TODO: handle exception
 			LoginWarningText.setText("*Nepareizs lietotājvārds un/vai parole");
 		}
-		/*
-		if(username.getText().equals("") || password.getText().equals("") ){
-			LoginWarningText.setText("*Lūdzu aizpildiet visus laukus");
-		}
-		/*
-		else if(!username.getText().equals("1") || !password.getText().equals("1")) {
-			LoginWarningText.setText("*Nepareizs lietotājvārds un/vai parole");
-		}
 		
-			
-			else {
-				DataBase.verifyUser(username.getText(),password.getText());
-				
-				MainController.counter++;
-				MainController.counter++;
-				Parent _page= FXMLLoader.load(getClass().getResource(Main.pages.get(MainController.counter)));
-				Scene _scene = new Scene(_page);
-				Stage app_stage=(Stage)((Node) event.getSource()).getScene().getWindow();
-				app_stage.setScene(_scene);
-				app_stage.show();
-				
-			}
-			*/
 		
 		
 	}

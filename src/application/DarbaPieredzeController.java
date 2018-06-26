@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -62,8 +63,11 @@ public class DarbaPieredzeController implements Initializable {
 			app_stage.show();
 		}
 		//delete function , deletes object from array and table view
-		public void deletePieredzeRow() {
-			DarbaPieredzeAizpildiController.experience.remove(DarbaPieredzeTable.getSelectionModel().getSelectedItems());
+		public void deletePieredzeRow() throws ClassNotFoundException, SQLException {
+			//DarbaPieredzeAizpildiController.experience.remove(DarbaPieredzeTable.getSelectionModel().getSelectedItems());
+			//DarbaPieredzeTable.getItems().removeAll(DarbaPieredzeTable.getSelectionModel().getSelectedItems());
+			int index= DarbaPieredzeTable.getSelectionModel().getSelectedIndex();
+			DataBase.deletePieredze(DarbaPieredzeAizpildiController.experience.get(index).getId());
 			DarbaPieredzeTable.getItems().removeAll(DarbaPieredzeTable.getSelectionModel().getSelectedItems());
 			System.out.println(DarbaPieredzeAizpildiController.experience);
 		}

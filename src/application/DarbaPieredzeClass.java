@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class DarbaPieredzeClass {
-
+	private int id;
 	private String profession;
 	private String workPlaceName;
 	private String city;
@@ -24,6 +24,13 @@ public class DarbaPieredzeClass {
 		setDateTo(dateTo);
 		setWorkDuties(workDuties);
 		setWorkPlaceName(workPlaceName);
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getProfession() {
 		return profession;

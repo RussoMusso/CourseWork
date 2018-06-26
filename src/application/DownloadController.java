@@ -63,7 +63,9 @@ public class DownloadController {
         cv.createCitasPrasmesParagraph();
         
         try {
-            FileOutputStream output = new FileOutputStream(path_txt.getText() + "/" +" CV.doc");
+            FileOutputStream output = new FileOutputStream(path_txt.getText() +
+            		"/" +PersonasDatiController.persona.getName()+"_"+PersonasDatiController.persona.getSurname()
+            		+"_CV.doc");
             document.write(output);
             output.close();
            } catch (Exception e) {
